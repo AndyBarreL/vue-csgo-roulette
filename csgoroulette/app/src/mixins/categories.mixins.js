@@ -3,6 +3,7 @@ import { mapGetters } from "vuex";
 export const listCategories = {
   data: () => ({
     categories: [],
+    activeIndex: '1',
   }),
   methods: {
     async getListCategories() {
