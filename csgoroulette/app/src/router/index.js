@@ -1,29 +1,58 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import layoutDefault from '../layouts/layoutDefault.vue'
+import LayoutDefault from '../layouts/LayoutDefault.vue'
+import AuthLayout from '../layouts/AuthLayout.vue';
+import RegistrationForm from '../components/auth/Registration.vue';
+import LoginForm from '../components/auth/Login.vue';
+import store from '../store/modules/auth';
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'layoutDefault',
-    component: layoutDefault
+    path: '/market',
+    name: 'LayoutDefault',
+    component: LayoutDefault,
+    meta: { 
+      requiresAuth: true
+    }
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+    path: '/auth',
+    name: 'AuthLayout',
+    component: AuthLayout,
+    meta: { 
+      requiresAuth: false
+    },
+    children: [
+      {
+        path: '/login',
+        component: LoginForm
+      },
+      {
+        path: '/registration',
+        component: RegistrationForm
+      },
+    ]
+  },
 ]
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if(to.matched.some(record => record.meta.requiresAuth)) {
+    if (store.getters.isLoggedIn) {
+      next()
+      return
+    }
+    next('/login') 
+  } else {
+    next() 
+  }
 })
 
 export default router
