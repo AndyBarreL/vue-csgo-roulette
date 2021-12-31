@@ -10,7 +10,7 @@
     >
       <p class="title_form">Login</p>
       <p class="pb-20 pt-8 subtitle">Please fill all required fields (with *)</p>
-      <el-form-item label="Username" prop="email">
+      <el-form-item label="Email" prop="email">
         <el-input v-model="formRegistration.email"/>
       </el-form-item>
       <el-form-item label="Password" prop="password">
@@ -72,7 +72,7 @@ export default {
   font-size: 14px;
 }
 .registration_form {
-  width: 30%;
+  width: 20%;
   background-color: white;
   border-radius: 2%;
 }
