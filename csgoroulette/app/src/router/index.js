@@ -4,7 +4,7 @@ import LayoutDefault from '../layouts/LayoutDefault.vue'
 import AuthLayout from '../layouts/AuthLayout.vue';
 import RegistrationForm from '../components/auth/Registration.vue';
 import LoginForm from '../components/auth/Login.vue';
-import auth from '../store/modules/auth';
+import store from '../store/modules/auth';
 
 Vue.use(VueRouter)
 
@@ -45,7 +45,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if(to.matched.some(record => record.meta.requiresAuth)) {
-    if (auth.getters.isLoggedIn) {
+    if (store.getters.isLoggedIn) {
       next()
       return
     }

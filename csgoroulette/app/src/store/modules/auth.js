@@ -6,7 +6,9 @@ const initialState = {
   user : {},
 };
 
-const getters = {};
+const getters = {
+  isLoggedIn: (state) => state.token,
+};
 
 const actions = {
   async createUser(context, data) {
@@ -14,7 +16,13 @@ const actions = {
   },
   async logIn(context, data) {
     const result = await http.post('/auth/login', data);
-    console.log(result)
+    const token = result.data.data.access_token
+    localStorage.setItem('token', token)
+    http.defaults.headers.common['Authorization'] = token
+
+    context.commit('isLoggedIn');
+
+    return true;
   }
 };
 

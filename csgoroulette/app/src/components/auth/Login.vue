@@ -47,8 +47,9 @@ export default {
       this.$refs['formRegistration'].validate(async (valid) => {
         if (valid) {
           const result = await this.$store.dispatch('auth/logIn', this.formRegistration);
-          if (result.data.msg === 'Success') {
-            this.$router.push('/');
+          console.log(result);
+          if (result) {
+            this.$router.push('/market');
           }
         } else {
           console.log('error submit!!');
