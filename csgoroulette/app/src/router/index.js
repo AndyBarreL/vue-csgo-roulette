@@ -1,23 +1,27 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import layoutDefault from '../layouts/layoutDefault.vue'
+import LayoutDefault from '../layouts/LayoutDefault.vue'
+import RegistrationForm from '../components/auth/Registration.vue';
+import LoginForm from '../components/auth/Login.vue';
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'layoutDefault',
-    component: layoutDefault
+    name: 'LayoutDefault',
+    component: LayoutDefault
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+    path: '/registration',
+    name: 'RegistrationForm',
+    component: RegistrationForm
+  },
+  {
+    path: '/login',
+    name: 'LoginForm',
+    component: LoginForm
+  },
 ]
 
 const router = new VueRouter({

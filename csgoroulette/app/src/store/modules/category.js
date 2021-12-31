@@ -10,7 +10,7 @@ const getters = {
 
 const actions = {
   async getCategoryList(context) {
-    const result = await http.get('/steamapps');
+    const result = await http.get('/api/steamapps');
     context.commit('SET_CATEGORY_LIST', result.data.data);
   },
 };

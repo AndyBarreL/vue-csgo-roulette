@@ -15,19 +15,19 @@
       </el-menu>
     </el-header>
     <el-main>
-      <category-list/>
+      <!-- <category-list/> -->
     </el-main>
   </el-container>
 </template>
 
 <script>
 import { listCategories } from '../mixins/categories.mixins';
-import CategoryList from '../components/CategoryList.vue';
+// import CategoryList from '../components/CategoryList.vue';
 
 export default {
   name: 'layoutDefault',
   components: {
-    CategoryList
+    // CategoryList
   },
   mixins: [listCategories],
   data: () => ({
